@@ -1,0 +1,31 @@
+@layout({ title: 'Register' })
+  <h1>Register</h1>
+  <form method="POST" action="{{ route('auth.register.store') }}">
+    {{ csrfField() }}
+    <label>
+      <span>Full Name</span>
+      <input type="text" name="fullName" value="{{ old('fullName') || '' }}" />
+      @inputError('fullName')
+        {{ $messages.join(', ') }}
+      @end
+    </label>
+
+    <label>
+      <span>Email</span>
+      <input type="email" name="email" value="{{ old('email') || '' }}" />
+      @inputError('email')
+        {{ $messages.join(', ') }}
+      @end
+    </label>
+
+    <label>
+      <span>Password</span>
+      <input type="password" name="password" value="{{ old('password') || '' }}" />
+      @inputError('password')
+        {{ $messages.join(', ') }}
+      @end
+    </label>
+
+    <button type="submit">Register</button>
+  </form>
+@end

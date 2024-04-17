@@ -1,0 +1,30 @@
+@layout({ title: 'Login' })
+  <h1>Login</h1>
+  <form method="POST" action="{{ route('auth.login.store') }}">
+    {{ csrfField() }}
+
+    @error('E_INVALID_CREDENTIALS')
+      {{ $message }}
+    @end
+
+    <label>
+      <span>Email</span>
+      <input type="email" name="email" value="{{ old('email') || '' }}" />
+      @inputError('email')
+        {{ $messages.join(', ') }}
+      @end
+    </label>
+
+    <label>
+      <span>Password</span>
+      <input type="password" name="password" value="{{ old('password') || '' }}" />
+      @inputError('password')
+        {{ $messages.join(', ') }}
+      @end
+    </label>
+
+    <button type="submit">Login</button>
+  </form>
+
+  {{ inspect(flashMessages.all()) }}
+@end
